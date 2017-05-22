@@ -1,9 +1,18 @@
 var express = require('express');
 var app = express();
-console.log('server started');
 
-app.get('/', function(req, res) {
-	res.render('index.ejs');
+app.set('port', (process.env.PORT));
+
+app.use(express.static(__dirname + '/public'));
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/', function(request, response) {
+  response.render('index');
 });
 
-app.listen(3000);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
