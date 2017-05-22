@@ -1,0 +1,10 @@
+{
+	"name" : "dguchat",
+	"version" : "0.0.1",
+	"private" : true,
+	"main" : "server.js",
+	"dependencies" : {
+		"express" : "4.x",
+		"ejs" : "2.x"
+	}
+}
