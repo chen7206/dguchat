@@ -3,6 +3,6 @@
   "description": "Dongguk University WebRTC Chat Service",
   "repository": "https://github.com/rudebono/dguchat",
   "logo": "",
-  "keywords": ["node", "express", "heroku", "WebRTC", "DGU"],
+  "keywords": ["node", "express", "heroku"],
   "image": "heroku/nodejs"
 }
