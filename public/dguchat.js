@@ -13,7 +13,7 @@ function main() {
 function setMedia() {
 
 	// Get index <video> tag.
-	var videoArea = document.querySelector("video");
+	var videoArea = document.querySelector("#remote-video");
 
 	// get User Media fucntion on diffrent browsers.
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
