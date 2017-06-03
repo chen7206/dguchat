@@ -1,4 +1,10 @@
 /*
+	start main function
+*/
+window.onload = main;
+
+
+/*
 	define functions
 */
 
