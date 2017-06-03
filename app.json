@@ -1,8 +1,8 @@
 {
-  "name": "dguchat",
-  "description": "Dongguk University WebRTC Chat Service",
-  "repository": "https://github.com/rudebono/dguchat",
-  "logo": "",
-  "keywords": ["node", "express", "heroku"],
-  "image": "heroku/nodejs"
+	"name": "dguchat",
+	"description": "Dongguk University WebRTC Chat Service",
+	"repository": "https://github.com/rudebono/dguchat",
+	"logo": "",
+	"keywords": ["heroku", "node", "express", "ejs"],
+	"image": "heroku/nodejs"
 }

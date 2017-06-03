@@ -1,26 +1,27 @@
 {
-  "name": "dguchat",
-  "version": "0.0.1",
-  "description": "Dongguk University WebRTC Chat Service",
-  "engines": {
-    "node": "6.10.2"
-  },
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "ejs": "2.x",
-    "express": "4.x"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rudebono/dguchat"
-  },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "license": "gpl-3.0"
+	"name": "dguchat",
+	"version": "0.0.1",
+	"description": "Dongguk University WebRTC Chat Service",
+	"engines": {
+		"node": "6.x"
+	},
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"dependencies": {
+		"express": "4.x",
+		"ejs": "2.x"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rudebono/dguchat"
+	},
+	"keywords": [
+		"heroku",
+		"node",
+		"express",
+		"ejs"
+	],
+	"license": "gpl-3.0"
 }
