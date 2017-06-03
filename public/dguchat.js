@@ -1,5 +1,17 @@
+/*
+	define functions
+*/
+
 // main function
 function main() {
+
+	setMedia();
+}// END - main funciton
+
+
+// setMedia function
+function setMedia() {
+
 	// Get index <video> tag.
 	var videoArea = document.querySelector("video");
 
@@ -10,9 +22,7 @@ function main() {
 	var constraints = {video: true, audio: true}
 
 	// start getUderMedia
-	navigator.getUserMedia(constraints, onSuccess, onError);
-
-}// END - main funciton
+}// END - setMedia function
 
 
 // success function
@@ -31,3 +41,9 @@ function onError(error) {
 
 	console.log("ERROR : getUserMedia : ", error);
 }// END - error function
+
+
+/*
+	start main function
+*/
+main();
