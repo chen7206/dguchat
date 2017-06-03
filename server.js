@@ -2,8 +2,8 @@
 var express = require('express');
 var app = express();
 
-// set port by heroku's dafult ports.
-app.set('port', (process.env.PORT));
+// set psort by heroku's dafult ports.
+//app.set('port', (process.env.PORT));
 
 // set public folder (CSS)
 app.use(express.static(__dirname + '/public'));
@@ -19,5 +19,10 @@ app.get('/', function(request, response) {
 });
 
 // listen clients.
-app.listen(app.get('port'), function() {
+//app.listen(app.get('port'), function() {
+//	
+//});
+
+// listen 443 port
+app.listen(443, function() {
 });
