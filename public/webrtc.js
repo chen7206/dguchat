@@ -43,7 +43,7 @@ io.on('signal', function(data) {
 
 function startSignaling() {
 	console.log("starting signaling...");
-	rtcPeerConn = new webkitRTCPeerConnection(configuration);
+	rtcPeerConn = new RTCPeerConnection(configuration);
 	
 	// send any ice candidates to the other peer
 	rtcPeerConn.onicecandidate = function (evt) {
