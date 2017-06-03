@@ -1,10 +1,11 @@
 /*
 	define functions
 */
+alert("first");
 
 // main function
 function main() {
-
+	alert("main");
 	setMedia();
 }// END - main funciton
 
