@@ -16,7 +16,7 @@ app.get('/', function(request, response) {
 });
 
 // listen clients.
-app.listen(app.get('port'))
+app.listen(app.get('port'));
 
 // singaling using websocket
 app.io.route('signal', function(req) {
