@@ -17,3 +17,13 @@ app.get('/', function(req, res) {
 
 // listen clients.
 app.listen(app.get('port'));
+
+
+// Soket.io : Signaling
+app.io.route('signal', function(req) {
+
+	req.io.room(req.data.room).broadcast('signaling_message', {
+		type: req.data.type,
+		message: req.data.message
+	});
+});
