@@ -1,11 +1,10 @@
 /*
 	define functions
 */
-alert("first");
+window.onload = main;
 
-// main function
 function main() {
-	alert("main");
+	alert("test");
 	setMedia();
 }// END - main funciton
 
@@ -23,6 +22,7 @@ function setMedia() {
 	var constraints = {video: true, audio: true}
 
 	// start getUderMedia
+	navigator.getUserMedia(constraints, onSuccess, onError);
 }// END - setMedia function
 
 
