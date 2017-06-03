@@ -1,13 +1,4 @@
 /*
-	start main function
-*/
-console.log("test");
-window.onload = function() {
-	main();
-}
-
-
-/*
 	define functions
 */
 
