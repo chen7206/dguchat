@@ -10,7 +10,7 @@
 		"start": "node server.js"
 	},
 	"dependencies": {
-		"connect":"1.x",
+		"connect":"3.x",
 		"ejs": "2.x",
 		"express.io": "1.x"
 	},
