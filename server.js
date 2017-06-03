@@ -10,19 +10,10 @@ app.set('port', (process.env.PORT));
 app.use(express.static(__dirname + '/public'));
 
 // request and response function
-app.get('/', function(request, response) {
+app.get('/', function(req, res) {
 	// request / then response index.ejs file.
-	response.render('index');
+	res.render('index');
 });
 
 // listen clients.
 app.listen(app.get('port'));
-
-// singaling using websocket
-app.io.route('signal', function(req) {
-
-	req.io.room(req.data.room).broadcast('signaling_meesage', {
-		type: req.data.type,
-		message: req.data.message
-	});
-})
