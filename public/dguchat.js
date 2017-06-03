@@ -41,9 +41,3 @@ function onError(error) {
 
 	console.log("ERROR : getUserMedia : ", error);
 }// END - error function
-
-
-/*
-	start main function
-*/
-main();
