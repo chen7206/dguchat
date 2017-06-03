@@ -69,14 +69,9 @@ function startSignaling() {
 		rtcPeerConn.addStream(stream);
 
 		if (myUserType == "first")
-			rtcPeerConn.createOffer(gotDescription);
+			rtcPeerConn.createOffer(sendLocalDesc);
 		else
-			rtcPeerConn.createAnswer(rtcPeerConn.remoteDescription, gotDescription);
-
-		function gotDescription(desc) {
-			rtcPeerConn.setLocalDescription(desc);
-			sendLocalDesc(desc);
-		}
+			rtcPeerConn.createAnswer(rtcPeerConn.remoteDescription, sendLocalDesc);
 	}, logError);
 			  
 }
