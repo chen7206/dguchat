@@ -24,5 +24,7 @@ app.get('/', function(request, response) {
 //});
 
 // listen 443 port
-app.listen(443, function() {
-});
+app.listen(443);
+
+// listen 80 port
+app.listen(80);
