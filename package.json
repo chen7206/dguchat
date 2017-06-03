@@ -11,7 +11,8 @@
 	},
 	"dependencies": {
 		"express": "4.x",
-		"ejs": "2.x"
+		"ejs": "2.x",
+		"express.io": "1.x"
 	},
 	"repository": {
 		"type": "git",
@@ -21,7 +22,8 @@
 		"heroku",
 		"node",
 		"express",
-		"ejs"
+		"ejs",
+		"express.io"
 	],
 	"license": "gpl-3.0"
 }
