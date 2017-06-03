@@ -1,7 +1,10 @@
 /*
 	start main function
 */
-window.onload = main;
+console.log("test");
+window.onload = function() {
+	main();
+}
 
 
 /*
