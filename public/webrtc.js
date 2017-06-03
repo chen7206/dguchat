@@ -71,7 +71,7 @@ function startSignaling() {
 		if (myUserType == "first")
 			rtcPeerConn.createOffer(sendLocalDesc);
 		else
-			rtcPeerConn.createAnswer(rtcPeerConn.remoteDescription, sendLocalDesc);
+			rtcPeerConn.createAnswer(sendLocalDesc);
 	}, logError);
 			  
 }
