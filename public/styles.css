@@ -28,7 +28,7 @@ body {
 	height: 100%;
 }
 
-#remote-video {
+#local-video {
 	display: block;
 	object-fit: cover;
 	position: absolute;
