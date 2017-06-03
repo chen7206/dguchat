@@ -20,6 +20,11 @@ app.listen(app.get('port'));
 
 
 // Soket.io : Signaling
+app.io.route('ready', function(req) {
+	req.io.join(req.data.chat_room);
+	req.io.join(req.data.signal_room);
+});
+
 app.io.route('signal', function(req) {
 
 	req.io.room(req.data.room).broadcast('signaling_message', {
