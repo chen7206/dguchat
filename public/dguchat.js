@@ -23,22 +23,21 @@ function setMedia() {
 
 	// start getUderMedia
 	navigator.getUserMedia(constraints, onSuccess, onError);
+
+	
+	// success function
+	function onSuccess(stream) {
+
+		console.log("SUCCESS : getUserMedia.");
+
+		// set video src and play.
+		videoArea.src = window.URL.createObjectURL(stream);
+		videoArea.play();
+	}// END - onSuccess function
+
+	// error function
+	function onError(error) {
+
+		console.log("ERROR : getUserMedia : ", error);
+	}// END - error function
 }// END - setMedia function
-
-
-// success function
-function onSuccess(stream) {
-
-	console.log("SUCCESS : getUserMedia.");
-
-	// set video src and play.
-	videoArea.src = window.URL.createObjectURL(stream);
-	videoArea.play();
-}// END - onSuccess function
-
-
-// error function
-function onError(error) {
-
-	console.log("ERROR : getUserMedia : ", error);
-}// END - error function
