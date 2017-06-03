@@ -30,10 +30,7 @@ body {
 
 #remote-video {
 	display: block;
-	max-height: 100%;
-	max-width: 100%;
 	object-fit: cover;
-	opacity: 0;
 	position: absolute;
 	transition: opacity 1s;
 	max-width : 100%;
