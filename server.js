@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/public'));
 // request and response function
 app.get('/', function(req, res) {
 	// request / then response index.ejs file.
-	res.render('index');
+	res.render('index.ejs');
 });
 
 // listen clients.

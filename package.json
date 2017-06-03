@@ -10,7 +10,7 @@
 		"start": "node server.js"
 	},
 	"dependencies": {
-		"express": "4.x",
+		"connect":"1.x",
 		"ejs": "2.x",
 		"express.io": "1.x"
 	},
@@ -21,9 +21,9 @@
 	"keywords": [
 		"heroku",
 		"node",
-		"express",
+		"connect",
 		"ejs",
 		"express.io"
 	],
-	"license": "gpl-3.0"
+	"license": "GPL-3.0"
 }
