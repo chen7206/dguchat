@@ -4,7 +4,7 @@
 window.onload = main;
 
 function main() {
-	alert("test");
+	
 	setMedia();
 }// END - main funciton
 
@@ -19,7 +19,7 @@ function setMedia() {
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
 	// set constraints.
-	var constraints = {video: true, audio: true}
+	var constraints = {video: true, audio: true};
 
 	// start getUderMedia
 	navigator.getUserMedia(constraints, onSuccess, onError);
