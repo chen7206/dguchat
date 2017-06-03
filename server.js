@@ -1,16 +1,13 @@
 // make express instance
-var express = require('express');
+var express = require('express.io');
 var app = express();
+app.http().io();
 
 // set psort by heroku's dafult ports.
 app.set('port', (process.env.PORT));
 
-// set public folder (CSS)
+// set public folder (CSS, Javascript)
 app.use(express.static(__dirname + '/public'));
-
-// set views folder (ejs)
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
 
 // request and response function
 app.get('/', function(request, response) {
@@ -20,3 +17,12 @@ app.get('/', function(request, response) {
 
 // listen clients.
 app.listen(app.get('port'))
+
+// singaling using websocket
+app.io.route('signal', function(req) {
+
+	req.io.room(req.data.room).broadcast('signaling_meesage', {
+		type: req.data.type,
+		message: req.data.message
+	});
+})
