@@ -1,4 +1,11 @@
 /*!
+ *
+ * WebRTC Lab
+ * @author dodortus (codejs.co.kr / dodortus@gmail.com)
+ *
+ */
+
+/*!
   간략한 시나리오.
   1. offer가 SDP와 candidate전송
   2. answer는 offer가 보낸 SDP와 cadidate를 Set한다.
@@ -6,228 +13,182 @@
   4. offer는 응답 받은 SDP와 candidate를 Set한다.
 */
 
-$(document).ready(function(){ 
+/*
+TODO
+ - 파폭 처리
+ - hasWebCam 분기
+*/
+$(function() {
+  console.log('Loaded webrtc');
 
-// cross browsing
-navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-var RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-var RTCSessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription || window.webkitRTCSessionDescription;
-var RTCIceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate || window.webkitRTCIceCandidate;
+  // cross browsing
+  navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+  var RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+  var RTCSessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription || window.webkitRTCSessionDescription;
+  var RTCIceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate || window.webkitRTCIceCandidate;
 
-// for logic
-var socket = io();
-var roomId = null;
-var userId = Math.round(Math.random() * 9999);
-var remoteUserId = null;
-var isOffer = null;
-var localStream = null;
-var peer = null; // offer or answer peer
-var iceServers = {
-	'iceServers': [
-		{'url':'stun:stun.l.google.com:19302'},
-		{'url':'stun:stun01.sipphone.com'},
-		{'url':'stun:stun.ekiga.net'},
-		{'url':'stun:stun.fwdnet.net'},
-		{'url':'stun:stun.ideasip.com'},
-		{'url':'stun:stun.iptel.org'},
-		{'url':'stun:stun.rixtelecom.se'},
-		{'url':'stun:stun.schlund.de'},
-		{'url':'stun:stun.l.google.com:19302'},
-		{'url':'stun:stun1.l.google.com:19302'},
-		{'url':'stun:stun2.l.google.com:19302'},
-		{'url':'stun:stun3.l.google.com:19302'},
-		{'url':'stun:stun4.l.google.com:19302'},
-		{'url':'stun:stunserver.org'},
-		{'url':'stun:stun.softjoys.com'},
-		{'url':'stun:stun.voiparound.com'},
-		{'url':'stun:stun.voipbuster.com'},
-		{'url':'stun:stun.voipstunt.com'},
-		{'url':'stun:stun.voxgratia.org'},
-		{'url':'stun:stun.xten.com'},
-		{
-			'url': 'turn:numb.viagenie.ca',
-			'credential': 'muazkh',
-			'username': 'webrtc@live.com'
-		},
-		{
-			'url': 'turn:192.158.29.39:3478?transport=udp',
-			'credential': 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-			'username': '28224511:1379330808'
-		},
-		{
-			'url': 'turn:192.158.29.39:3478?transport=tcp',
-			'credential': 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-			'username': '28224511:1379330808'
-		}
-	]
+  // for logic
+  var socket = io();
+  var roomId = null;
+  var userId = Math.round(Math.random() * 999999) + 999999;
+  var remoteUserId = null;
+  var isOffer = null;
+  var localStream = null;
+  var peer = null; // offer or answer peer
+  var iceServers = {
+    'iceServers': [{
+      'url': 'stun:stun.l.google.com:19302'
+    }, {
+      'url': 'turn:107.150.19.220:3478',
+      'credential': 'turnserver',
+      'username': 'subrosa'
+    }]
+  };
+  var peerConnectionOptions = {
+    'optional': [{
+      'DtlsSrtpKeyAgreement': 'true'
+    }]
+  };
+  var mediaConstraints = {
+    'mandatory': {
+      'OfferToReceiveAudio': true,
+      'OfferToReceiveVideo': true
+    }
   };
 
-var mediaConstraints = {
-	'mandatory': {
-	'OfferToReceiveAudio': true,
-	'OfferToReceiveVideo': true
-	}
-};
+  // DOM
+  var $body = $('body');
+  var $roomList = $('#room-list');
+  var $videoWrap = $('#video-wrap');
+  var $tokenWrap = $('#token-wrap');
+  var $uniqueToken = $('#unique-token');
+  var $joinWrap = $('#join-wrap');
 
+  /**
+  * getUserMedia
+  */
+  function getUserMedia() {
+    console.log('getUserMedia');
 
-var $body = $('body');
-var $roomList = $('#room-list');
-var $videoWrap = $('#video-wrap');
-var $tokenWrap = $('#token-wrap');
-var $uniqueToken = $('#unique-token');
-var $joinWrap = $('#join-wrap');
+    navigator.getUserMedia({
+      audio: true,
+      video: {
+        mandatory: {
+          // 720p와 360p 해상도 최소 최대를 잡게되면 캡쳐 영역이 가깝게 잡히는 이슈가 있다.
+          // 1920 * 1080 | 1280 * 720 | 858 * 480 | 640 * 360 | 480 * 272 | 320 * 180
+          maxWidth: 1280,
+          maxHeight: 720,
+          minWidth: 1280,
+          minHeight: 720,
+          maxFrameRate: 24,
+          minFrameRate: 18,
+          maxAspectRatio: 1.778,
+          minAspectRatio: 1.777
+        },
+        optional: [
+          {googNoiseReduction: true}, // Likely removes the noise in the captured video stream at the expense of computational effort.
+          {facingMode: "user"}        // Select the front/user facing camera or the rear/environment facing camera if available (on Phone)
+        ]
+      }
+    }, function(stream) {
+      localStream = stream;
+      $videoWrap.append('<video id="local-video" muted="muted" autoplay="true" src="' + URL.createObjectURL(localStream) + '"></video>');
+      $body.addClass('room wait');
+      $tokenWrap.slideDown(1000);
 
+      if (isOffer) {
+        createPeerConnection();
+        createOffer();
+      }
+    }, function() {
+      console.error('Error getUserMedia');
+    });
+  }
 
-// 메인 함수
-function main() {
+  /**
+  * createOffer
+  * offer SDP를 생성 한다.
+  */
+  function createOffer() {
+    console.log('createOffer', arguments);
 
-	// 채팅 방 아이디를 설정한다.
-	setRoomId();	
+    peer.addStream(localStream); // addStream 제외시 recvonly로 SDP 생성됨
+    peer.createOffer(function(SDP) {
+      // url parameter codec=h264
+      if (location.search.substr(1).match('h264')) {
+        SDP.sdp = SDP.sdp.replace("100 101 107", "107 100 101"); // for chrome < 57
+        SDP.sdp = SDP.sdp.replace("96 98 100", "100 96 98"); // for chrome 57 <
+      }
 
-	// 시작 버튼을 누르면 미디어를 가져온다.
-	$('#start').click(function() {
-		getUserMedia();
-	});
-}
-main();
-
-// 채팅 방 아이디를 설정하는 함수
-function setRoomId() {
-
-	// 현재 방 번호
-	roomId = location.hash;	
-
-	// 현재 방 번호가 존재 하지 않는다면
-	if(roomId.length == 0) {
-		
-		// 새로운 방 번호를 생성한다.
-		roomId = '#' + Math.round(Math.random() * 9999);
-
-		// 생성된 방 번호를 주소 뒤에 붙여준다.
-		location.hash = roomId;
-	}
-
-	// 현재 주소	
-	var src = location.href;
-
-	// 기존의 방 번호 또는 새로 생성한 방 번호를 공유 링크에 나타낸다.
-	// text와 href를 바꿔준다.
-	$uniqueToken.text(src);
-	$uniqueToken.attr('href', src);
-}
-
-
-// 미디어를 가져오는 함수
-function getUserMedia() {
-
-	navigator.getUserMedia({audio: true, video: true},
-		// 성공 했을 경우 비디오 테그에 자신의 미디어를 나타내준다.
-		function(stream) {
-
-			// 전역 변수 미디어 스트림에 자신의 스트림 값을 넣어준다.
-			localStream = stream;
-
-			// 비디오를 화면에 출력해준다.
-			$videoWrap.append('<video id="local-video" muted="muted" autoplay="true" src="' + URL.createObjectURL(localStream) + '"></video>');
-		
-			// 방 생성자 이면	
-			if (isOffer) {
-				// RTCPeerConnection 을 만든다.
-				createPeerConnection();
-				createOffer();
-			}
-		},
-		// 실패 했을 경우 logError 함수를 호출한다.
-		logError);
-}
-
-// 오류 출력 함수
-function logError(error) {
-	console.error(error.name + ' : ' + error.message);
-}
-
-
-// 자신과 상대방을 연결해주는 RTCPeerConnection을 생성하고
-// 관련된 이벤트를 정의해준다.
-function createPeerConnection() {
-
-	// ice서버 RTCPeerConnection을 생성한다.
-	peer = new RTCPeerConnection(iceServers);
-
-	// 시그널링 서버를 통해 ICE서버의 정보를 상대방에게 보내는 이벤트를 정의한다.
-	peer.onicecandidate = function(event) {
-
-		if (event.candidate) {
-			send({
-				userId: userId,
-				to: 'all',
-				label: event.candidate.sdpMLineIndex,
-				id: event.candidate.sdpMid,
-				candidate: event.candidate.candidate
-			});
-		} else {}
-	};
-
-	// 상대방과 연결이 된 후 이벤트를 정의한다.
-	peer.onaddstream = function(event) {
-		
-		// 상대방의 미디어를 출력한다.
-		$videoWrap.append('<video id="remote-video" autoplay="true" src="' + URL.createObjectURL(event.stream) + '"></video>');
-	};
-
-	// 상대방과 연결이 끊기면 실행되는 이벤트를 정의한다.
-	peer.onremovestream = function(event) {};
-}
-
-
-// 1. offer가 데이터를 전송하는 함수
-function createOffer() {
-
-	// 피어에 자신의 미디어 스트림을 추가한다.
-	peer.addStream(localStream);
-
-	// SDP
-	peer.createOffer(function(SDP) {
-		
-		peer.setLocalDescription(SDP);
-		console.log("Sending offer description", SDP);
-	
-		send({
-			sender: userId,
-			to: 'all',
-			sdp: SDP
-		});
-	}, onSdpError, mediaConstraints);
-}
-
+      peer.setLocalDescription(SDP);
+      console.log("Sending offer description", SDP);
+      send({
+        sender: userId,
+        to: 'all',
+        sdp: SDP
+      });
+    }, onSdpError, mediaConstraints);
+  }
 
   /**
   * createAnswer
   * offer에 대한 응답 SDP를 생성 한다.
   * @param {object} msg offer가 보내온 signaling
   */
+  function createAnswer(msg) {
+    console.log('createAnswer', arguments);
 
-// 2. 
-function createAnswer(msg) {
-	console.log('createAnswer', arguments);
+    peer.addStream(localStream);
+    peer.setRemoteDescription(new RTCSessionDescription(msg.sdp), function() {
+      peer.createAnswer(function(SDP) {
+        peer.setLocalDescription(SDP);
+        console.log("Sending answer to peer.", SDP);
+        send({
+          sender: userId,
+          to: 'all',
+          sdp: SDP
+        });
+      }, onSdpError, mediaConstraints);
+    }, function() {
+      console.error('setRemoteDescription', arguments);
+    });
+  }
 
-	peer.addStream(localStream);
-	peer.setRemoteDescription(new RTCSessionDescription(msg.sdp), function() {
-		peer.createAnswer(function(SDP) {
-			peer.setLocalDescription(SDP);
-			console.log("Sending answer to peer.", SDP);
+  /**
+  * createPeerConnection
+  * offer, answer 공통 함수로 peer를 생성하고 관련 이벤트를 바인딩 한다.
+  */
+  function createPeerConnection() {
+    console.log('createPeerConnection', arguments);
 
-			send({
-				sender: userId,
-				to: 'all',
-				sdp: SDP
-			});
-		}, onSdpError, mediaConstraints);
-	}, function() {
-		console.error('setRemoteDescription', arguments);
-	});
-}
+    peer = new RTCPeerConnection(iceServers, peerConnectionOptions);
+    console.log('new Peer', peer);
 
+    peer.onicecandidate = function(event) {
+      if (event.candidate) {
+        send({
+          userId: userId,
+          to: 'all',
+          label: event.candidate.sdpMLineIndex,
+          id: event.candidate.sdpMid,
+          candidate: event.candidate.candidate
+        });
+      } else {
+        console.info('Candidate denied', event.candidate);
+      }
+    };
+
+    peer.onaddstream = function(event) {
+      console.log("Adding remote strem", event);
+
+      $videoWrap.append('<video id="remote-video" autoplay="true" src="' + URL.createObjectURL(event.stream) + '"></video>');
+      $body.removeClass('wait').addClass('connected');
+    };
+
+    peer.onremovestream = function(event) {
+      console.log("Removing remote stream", event);
+    };
+  }
 
   /**
   * onSdpError
@@ -235,18 +196,6 @@ function createAnswer(msg) {
   function onSdpError() {
     console.log('onSdpError', arguments);
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
   /****************************** Below for signaling ************************/
 
@@ -301,6 +250,36 @@ function createAnswer(msg) {
     }
   }
 
+  /**
+   * setRoomToken
+   */
+  function setRoomToken() {
+    //console.log('setRoomToken', arguments);
+
+    if (location.hash.length > 2) {
+      $uniqueToken.attr('href', location.href);
+    } else {
+      location.hash = '#' + (Math.random() * new Date().getTime()).toString(32).toUpperCase().replace(/\./g, '-');
+    }
+  }
+
+  /**
+   * setClipboard
+   */
+  function setClipboard() {
+    //console.log('setClipboard', arguments);
+
+    $uniqueToken.click(function(){
+      var link = location.href;
+      if (window.clipboardData){
+        window.clipboardData.setData('text', link);
+        $.message('Copy to Clipboard successful.');
+      }
+      else {
+        window.prompt("Copy to clipboard: Ctrl+C, Enter", link); // Copy to clipboard: Ctrl+C, Enter
+      }
+    });
+  }
 
   /**
    * onFoundUser
@@ -335,6 +314,65 @@ function createAnswer(msg) {
     }
   }
 
+  function pauseVideo(callback) {
+    console.log('pauseVideo', arguments);
+    localStream.getVideoTracks()[0].enabled = false;
+    callback && callback();
+  }
+
+  function resumeVideo(callback) {
+    console.log('resumeVideo', arguments);
+    localStream.getVideoTracks()[0].enabled = true;
+    callback && callback();
+  }
+
+  function muteAudio(callback) {
+    console.log('muteAudio', arguments);
+    localStream.getAudioTracks()[0].enabled = false;
+    callback && callback();
+  }
+
+  function unmuteAudio(callback) {
+    console.log('unmuteAudio', arguments);
+    localStream.getAudioTracks()[0].enabled = true;
+    callback && callback();
+  }
+
+  /**
+   * initialize
+   */
+  function initialize() {
+    setRoomToken();
+    setClipboard();
+    roomId = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+
+    $('#start').click(function() {
+      getUserMedia();
+    });
+
+    $('#btn-camera').click(function() {
+      var $this = $(this);
+      $this.toggleClass('active');
+
+      if ($this.hasClass('active')) {
+        pauseVideo();
+      } else {
+        resumeVideo();
+      }
+    });
+
+    $('#btn-mic').click(function() {
+      var $this = $(this);
+      $this.toggleClass('active');
+
+      if ($this.hasClass('active')) {
+        muteAudio();
+      } else {
+        unmuteAudio();
+      }
+    });
+  }
+  initialize();
 
   /**
    * socket handling
@@ -355,7 +393,7 @@ function createAnswer(msg) {
   socket.on('message', function(data) {
     onmessage(data);
   });
-});// END - $
+});
 
 Object.size = function(obj) {
   var size = 0, key;
