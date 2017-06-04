@@ -1,7 +1,8 @@
 // make express instance
-var express = require('express.io');
+var express = require('express');
 var app = express();
-app.http().io();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // set psort by heroku's dafult ports.
 app.set('port', (process.env.PORT));
@@ -17,14 +18,3 @@ app.get('/', function(req, res) {
 
 // listen clients.
 app.listen(app.get('port'));
-
-// Signal
-app.io.route('signal', function(req) {
-	req.io.join(req.data);
-	app.io.room(req.data).broadcast('signal', {
-		user_type: req.data.user_type,
-		user_name: req.data.user_name,
-		user_data: req.data.user_data,
-		command: req.data.command
-	});
-});
