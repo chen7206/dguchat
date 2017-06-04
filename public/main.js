@@ -1,23 +1,3 @@
-/*!
- *
- * WebRTC Lab
- * @author dodortus (codejs.co.kr / dodortus@gmail.com)
- *
- */
-
-/*!
-  간략한 시나리오.
-  1. offer가 SDP와 candidate전송
-  2. answer는 offer가 보낸 SDP와 cadidate를 Set한다.
-  3. answer는 응답할 SDP와 candidate를 얻어서 offer한테 전달한다.
-  4. offer는 응답 받은 SDP와 candidate를 Set한다.
-*/
-
-/*
-TODO
- - 파폭 처리
- - hasWebCam 분기
-*/
 $(function() {
   console.log('Loaded webrtc');
 
@@ -39,9 +19,9 @@ $(function() {
     'iceServers': [{
       'url': 'stun:stun.l.google.com:19302'
     }, {
-      'url': 'turn:107.150.19.220:3478',
-      'credential': 'turnserver',
-      'username': 'subrosa'
+      'url': 'turn:numb.viagenie.ca',
+      'credential': 'muazkh',
+      'username': 'webrtc@live.com'
     }]
   };
   var peerConnectionOptions = {
