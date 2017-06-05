@@ -113,8 +113,10 @@ body {
 	text-align:center;
 }
 
+
 video {
 	width:50%;
 	height:100px;
+	object-fit: fill;
 	border-radius:0px;
 }
