@@ -29,7 +29,7 @@ connection.onstream = function(event) {
 	}
 };
 
-var roomid = document.getElementById('txt-roomid');
+var roomid = document.getElementById('text-roomid');
 //roomid.value = connection.token();
 roomid.value = Math.round(Math.random() * 100);
 

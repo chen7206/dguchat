@@ -11,17 +11,20 @@
 		<script src="https://dguchat.herokuapp.com/socket.io/socket.io.js"></script>
 	</head>
 	<body>
-		<input id="txt-roomid" placeholder="Unique Room ID">
-		<button id = "btn-open-or-join-room">Open Or Join Room</button>
+		<div id="wrap">
+			<div id="intro">
+				<input id="text-roomid" placeholder="채팅방 이름">
+				<button id = "btn-open-or-join-room">시작</button>
+			</div>
 
-		<hr>
+			<div id="local-videos-container">
+			
+			</div>
 
-		<div id="local-videos-container"></div>
-
-		<hr>
-
-		<div id="remote-videos-container"></div>
-
+			<div id="remote-videos-container">
+			
+			</div>
+		</div>
 		<!--DGU Chat js-->
 		<script src="dguchat.js"></script>
 	</body>
