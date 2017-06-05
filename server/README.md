@@ -9,4 +9,11 @@ https://dguchat.herokuapp.com/views/RTCMultiConnection.js
 https://dguchat.herokuapp.com/views/RTCMultiConnection.min.js  
   
 #Socket.io URL in DGU chat signaling Server(heroku)  
-connection.socketURL = 'https://rudebono.herokuapp.com:443/';  
+connection.socketURL = 'https://dguchat.herokuapp.com:443/';  
+  
+#ICE Server?  
+this signaling server based on RTCConnection.  
+defulat ICE Framwork in RTCConnection :  
+STUN server - google.com  
+TURN server - webrtcweb.com  
+(we can add custom ICE servers. check : http://www.rtcmulticonnection.org/docs/iceServers/)  
