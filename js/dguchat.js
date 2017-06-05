@@ -20,6 +20,9 @@ connection.onstream = function(event) {
 
 	var video = event.mediaElement;
 
+	console.log(event.type);
+	localVideoContainer.appendChild(video);
+/*
 	if(event.type == 'local') {
 		console.log("local!");
 		localVideoContainer.appendChild(video);
@@ -31,6 +34,8 @@ connection.onstream = function(event) {
 		remoteVideoContainer.appendChild(video);
 		//video.play();
 	}
+
+*/
 };
 
 
@@ -82,7 +87,7 @@ var publicRoomsDiv = document.getElementById('public-rooms');
 
 				publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
 			});
-			setTimeout(looper, 5000);
+			setTimeout(looper, 4000);
 		});
 	})();
 
