@@ -106,14 +106,14 @@ body {
 
 
 
-
-
-
-
-
-
+#videos-container {
+	margin: 0 auto 0 auto;
+	padding: 10% 1.5em 1.3em 1.5em;
+	width: 80%;
+	text-align:center;
+}
 
 video {
-  width:45%;
-  border-radius:15px;
+  width:100%;
+  border-radius:0px;
 }
