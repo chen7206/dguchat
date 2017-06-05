@@ -65,11 +65,11 @@ function serverHandler(request, response) {
         try {
             stats = fs.lstatSync(filename);
 
-            if (filename && filename.search(/demos/g) === -1 && stats.isDirectory()) {
+            if (filename && filename.search(/views/g) === -1 && stats.isDirectory()) {
                 response.writeHead(200, {
                     'Content-Type': 'text/html'
                 });
-                response.write('<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=/demos/"></head><body></body></html>');
+                response.write('<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=/views/"></head><body></body></html>');
                 response.end();
                 return;
             }
@@ -87,14 +87,14 @@ function serverHandler(request, response) {
                 'Content-Type': 'text/html'
             });
 
-            if (filename.indexOf(resolveURL('/demos/MultiRTC/')) !== -1) {
-                filename = filename.replace(resolveURL('/demos/MultiRTC/'), '');
-                filename += resolveURL('/demos/MultiRTC/index.html');
-            } else if (filename.indexOf(resolveURL('/demos/')) !== -1) {
-                filename = filename.replace(resolveURL('/demos/'), '');
-                filename += resolveURL('/demos/index.html');
+            if (filename.indexOf(resolveURL('/views/MultiRTC/')) !== -1) {
+                filename = filename.replace(resolveURL('/views/MultiRTC/'), '');
+                filename += resolveURL('/views/MultiRTC/index.html');
+            } else if (filename.indexOf(resolveURL('/views/')) !== -1) {
+                filename = filename.replace(resolveURL('/views/'), '');
+                filename += resolveURL('/views/index.html');
             } else {
-                filename += resolveURL('/demos/index.html');
+                filename += resolveURL('/views/index.html');
             }
         }
 
@@ -120,14 +120,14 @@ function serverHandler(request, response) {
             }
 
             try {
-                var demos = (fs.readdirSync('demos') || []);
+                var views = (fs.readdirSync('demos') || []);
 
-                if (demos.length) {
+                if (views.length) {
                     var h2 = '<h2 style="text-align:center;display:block;"><a href="https://www.npmjs.com/package/rtcmulticonnection-v3"><img src="https://img.shields.io/npm/v/rtcmulticonnection-v3.svg"></a><a href="https://www.npmjs.com/package/rtcmulticonnection-v3"><img src="https://img.shields.io/npm/dm/rtcmulticonnection-v3.svg"></a><a href="https://travis-ci.org/muaz-khan/RTCMultiConnection"><img src="https://travis-ci.org/muaz-khan/RTCMultiConnection.png?branch=master"></a></h2>';
-                    var otherDemos = '<section class="experiment" id="demos"><details><summary style="text-align:center;">Check ' + (demos.length - 1) + ' other RTCMultiConnection-v3 demos</summary>' + h2 + '<ol>';
-                    demos.forEach(function(f) {
+                    var otherDemos = '<section class="experiment" id="views"><details><summary style="text-align:center;">Check ' + (demos.length - 1) + ' other RTCMultiConnection-v3 demos</summary>' + h2 + '<ol>';
+                    views.forEach(function(f) {
                         if (f && f !== 'index.html' && f.indexOf('.html') !== -1) {
-                            otherDemos += '<li><a href="/demos/' + f + '">' + f + '</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/' + f + '">Source</a>)</li>';
+                            otherDemos += '<li><a href="/views/' + f + '">' + f + '</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/' + f + '">Source</a>)</li>';
                         }
                     });
                     otherDemos += '<ol></details></section><section class="experiment own-widgets latest-commits">';
@@ -256,7 +256,7 @@ function runServer() {
 
         if (addr.address != 'localhost' && !isUseHTTPs) {
             console.log('Warning:');
-            console.log('\x1b[31m%s\x1b[0m ', 'Please set isUseHTTPs=true to make sure audio,video and screen demos can work on Google Chrome as well.');
+            console.log('\x1b[31m%s\x1b[0m ', 'Please set isUseHTTPs=true to make sure audio,video and screen views can work on Google Chrome as well.');
         }
 
         console.log('------------------------------');
