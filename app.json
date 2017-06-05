@@ -1,8 +1,0 @@
-{
-	"name": "dguchat",
-	"description": "Dongguk University WebRTC Chat Service",
-	"repository": "https://github.com/rudebono/dguchat",
-	"logo": "",
-	"keywords": ["heroku", "node", "express", "ejs", "socket.io"],
-	"image": "heroku/nodejs"
-}
