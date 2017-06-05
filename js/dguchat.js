@@ -19,14 +19,14 @@ var remoteVideoContainer = document.getElementById('remote-videos-container');
 connection.onstream = function(event) {
 
 	video = event.mediaElement;
+	video.autoplay = true;
+	//console.log(video);
 
 	if(event.type === 'local') {
 		localVideoContainer.appendChild(video);
-		video.play();
 	}
 	if(event.type === 'remote') {
 		remoteVideoContainer.appendChild(video);
-		video.play();
 	}
 };
 
