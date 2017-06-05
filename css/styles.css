@@ -113,11 +113,11 @@ body {
 }
 
 #local-videos-container {
-	border: 1px solid gray;
+	border: 0px;
 	bottom: 20px;
 	left: 20px;
-	max-height: 100px;
-	max-width: 100px;
+	max-height: 150px;
+	max-width: 150px;
 	width : 100%;
 	opacity: 1;
 	position: fixed;
