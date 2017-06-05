@@ -30,8 +30,6 @@ connection.onstream = function(event) {
 };
 
 var roomid = document.getElementById('text-roomid');
-//roomid.value = connection.token();
-roomid.value = Math.round(Math.random() * 100);
 
 document.getElementById('btn-open-or-join-room').onclick = function() {
 	this.disabled = true;
