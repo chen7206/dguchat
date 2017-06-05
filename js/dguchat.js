@@ -19,7 +19,6 @@ var remoteVideoContainer = document.getElementById('remote-videos-container');
 connection.onstream = function(event) {
 
 	video = event.mediaElement;
-	$(video).autoiplay = true;
 
 	if(event.type === 'local') {
 		localVideoContainer.appendChild(video);
