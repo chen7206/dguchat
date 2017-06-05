@@ -1,6 +1,6 @@
 var connection = new RTCMultiConnection();
 
-connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+connection.socketURL = 'https://rudebono.herokuapp.com:443/';
 
 connection.session = {
 	audio:true,
