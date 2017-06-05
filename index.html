@@ -1,1 +1,27 @@
-DGUchat Page
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8"/>
+		<title>DGU Chat</title>
+		<!--CSS-->
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<!--RTCMultiConnection-->
+		<script src="https://rawgit.com/muaz-khan/RTCMultiConnection/master/dist/RTCMultiConnection.min.js"></script>
+		<!--Socket.io-->
+		<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+		<!--DGU Chat js-->
+		<script src="dguchat.js"></script>
+	</head>
+	<body>
+		<input id="txt-roomid" placeholder="Unique Room ID">
+		<button id = "btn-open-or-join-room">Open Or Join Room</button>
+
+		<hr>
+
+		<div id="local-videos-container"></div>
+
+		<hr>
+
+		<div id="remote-videos-container"></div>
+	</body>
+</html>
