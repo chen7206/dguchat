@@ -125,6 +125,6 @@ body {
 
 video {
 	width:100%;
-	object-fit: fill;
+	object-fit: cover;
 	border-radius:0px;
 }
