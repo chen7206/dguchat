@@ -116,21 +116,14 @@ body {
 	border: 1px solid gray;
 	bottom: 20px;
 	left: 20px;
-	max-height: 17%;
-	max-width: 17%;
+	max-height: 25%;
+	max-width: 25%;
 	opacity: 1;
 	position: absolute;
-	transition: opacity 1s;
 }
 
 video {
 	width:100%;
 	object-fit: fill;
 	border-radius:0px;
-	-moz-transform: scale(-1, 1);
-	-ms-transform: scale(-1, 1);
-	-o-transform: scale(-1, 1);
-	-webkit-transform: scale(-1, 1);
-	transform: scale(-1, 1);
-	transition: opacity 1s;
 }
