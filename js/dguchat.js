@@ -21,12 +21,13 @@ connection.onstream = function(event) {
 	var video = event.mediaElement;
 
 	if(event.type == 'local') {
+		console.log("local!");
 		localVideoContainer.appendChild(video);
 		//video.play();
 	}
 
 	if(event.type == 'remote') {
-		console.log("!!!");
+		console.log("remote!");
 		remoteVideoContainer.appendChild(video);
 		//video.play();
 	}
