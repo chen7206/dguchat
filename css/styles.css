@@ -52,6 +52,10 @@ body {
 	width: 100%;
 }
 
+#chk_public_room {
+	margin-top : 10px;
+}
+
 #btn-open-or-join-room {
 	background-color: #4285F4;
 	border: none;
@@ -61,11 +65,55 @@ body {
 	box-shadow: 1px 1px 5px 0 rgba(0,0,0,.5);
 	color: white;
 	font-size: 0.8em;
-	height: 2.75em;
-	padding: 0.5em 0.7em 0.5em 0.7em;
-	width: 30%;
+	padding: 1em 3em 1em 3em;
 	margin-top: 10px;
 }
+
+
+#list-room {
+	margin: 0 auto 0 auto;
+	padding: 1.5em 1.5em 1.3em 1.5em;
+	width: 80%;
+	text-align:left;
+}
+
+#public-rooms {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+#public-room {
+	float: left;
+}
+
+#btn-public-room {
+	background-color: #de8703;
+	border: none;
+	border-radius: 2px;
+	-webkit-box-shadow: 1px 1px 5px 0 rgba(0,0,0,.5);
+	-moz-box-shadow: 1px 1px 5px 0 rgba(0,0,0,.5);
+	box-shadow: 1px 1px 5px 0 rgba(0,0,0,.5);
+	color: white;
+	font-size: 0.8em;
+	padding: 0.5em 1.5em 0.5em 1.5em;
+	margin: 10px;
+}
+
+
+
+
+
+
+#all-videos-container {
+	margin: 0 auto 0 auto;
+	padding: 10% 1.5em 1.3em 1.5em;
+	width: 80%;
+	text-align:center;
+}
+
+
 
 
 

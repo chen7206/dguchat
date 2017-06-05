@@ -16,20 +16,24 @@
 			<div id="intro">
 				<div><img id="logo" src="./img/logo.png"/></div>
 				<input id="text-roomid" placeholder="채팅방 이름을 입력해주세요.">
+				<div id="public_room">
+					<input id="chk_public_room" type="checkbox" name="chk_public_room" value="public" checked="checked"> 공개</br>
+				</div>
 				<button id="btn-open-or-join-room">시작</button>
 			</div>
-
-			<div id="local-videos-container">
-			
+			<div id="list-room">
+				<p>공개 채팅 방 :</p>
+				<ul id="public-rooms" style="text-align:left;"></ul>
 			</div>
 
-			<div id="remote-videos-container">
-			
+			<div id="all-videos-container">
+				<div id="local-videos-container">
+				</div>
+
+				<div id="remote-videos-container">
+				</div>
 			</div>
 		</div>
-		<br><br>
-		<h2>List of all public moderators:</h2>
-		<ol id="public-rooms" style="text-align:left;"></ol>
 		<!--DGU Chat js-->
 		<script src="./js/dguchat.js"></script>
 	</body>
