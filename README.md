@@ -39,4 +39,8 @@ https://www.youtube.com/watch?v=jqtC7mSTCgk
 # RTCMultiConnection API 명세서
 동영상을 보신분은 간단하게 WebRTC 어플리케아션을 만들 수 있다고 깨달았을 겁니다.  
 
+dguchat에서는 단순하게 화상채팅 기능만 넣어서 개발을 하였습니다.  
+
+하지만 다양한 API가 존재하기 때문에 비밀 채팅방 개설, 글 채팅 구현, 파일 전송 등 다양한 기능을 추가할 수 있습니다.  
+
 자세한 API 설명은 http://www.rtcmulticonnection.org/ 에서 확인 할 수 있습니다.
