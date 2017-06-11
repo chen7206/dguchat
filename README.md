@@ -33,7 +33,7 @@ https://www.youtube.com/watch?v=jqtC7mSTCgk
 	var connection = new RTCMultiConnection();
 	connection.socketURL = 'https://dguchat.herokuapp.com:443/';
 
-소켓 주소에 https://dguchat.herokuapp.com:443/ 를 입력하여 사용하시면 됩니다.
+소켓 주소에 https://dguchat.herokuapp.com:443/ 를 입력하여 사용하면 됩니다.
 
 
 # RTCMultiConnection API 명세서
