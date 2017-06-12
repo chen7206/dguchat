@@ -13,31 +13,57 @@
  
  2. Desktop & Mobile Applications를 선택합니다.
  
-![1](dguchat/img/1.png)
+![1](https://github.com/rudebono/dguchat/blob/master/img/1.png)
 
  3. Open Source를 선택합니다.
+ 
+![2](https://github.com/rudebono/dguchat/blob/master/img/2.png)
 
  4. Download Now를 선택하여 Qt Online Installers를 다운로드합니다.
+ 
+![3](https://github.com/rudebono/dguchat/blob/master/img/3.png)
 
  5. 다운받은 Qt Online Installers를 실행합니다.
+ 
+![4](https://github.com/rudebono/dguchat/blob/master/img/4.png)
 
  6. Sign-up을 통해 가입을 하시고, Login을 해주고 Next를 누릅니다.
+ 
+![5](https://github.com/rudebono/dguchat/blob/master/img/5.png)
 
  7. Qt를 설치할 경로를 지정해줍니다.
+ 
+![6](https://github.com/rudebono/dguchat/blob/master/img/6.png)
 
  8. 설치할 Qt 버전과 필요한 Tools를 선택합니다.
+ 
+![7](https://github.com/rudebono/dguchat/blob/master/img/7.png)
 
  9. 라이센스 동의를 해줍니다. 
+ 
+![8](https://github.com/rudebono/dguchat/blob/master/img/8.png)
 
  10. 설치가 완료되고 Qt Creator를 실행합니다.
+ 
+![9](https://github.com/rudebono/dguchat/blob/master/img/9.png)
+ 
+![10](https://github.com/rudebono/dguchat/blob/master/img/10.png)
 
  11. Open Project를 눌러 다운받은 소스코드 디렉토리의 qt_dguchat.pro를 선택합니다.
+ 
+![11](https://github.com/rudebono/dguchat/blob/master/img/11.png)
 
  12. 프로젝트가 로드되었습니다. 사용할 킷을 선택합니다.
+ 
+![12](https://github.com/rudebono/dguchat/blob/master/img/12.png)
 
  13. Ctrl + R을 눌러 프로젝트를 Run해줍니다.
+ 
+![13](https://github.com/rudebono/dguchat/blob/master/img/13.png)
 
  14. DGU Chat이 실행되었습니다.
+ 
+![14](https://github.com/rudebono/dguchat/blob/master/img/14.png)
 
 
 
@@ -48,7 +74,9 @@
  **- 정적링킹 실행파일을 제작하려면 -static 옵션으로 빌드된 Qt버전이 설치되어 있어야합니다.**
  
  **- 오픈소스 라이센스로 정적빌드된 Qt버전으로 DGU Chat의 정적링킹 실행파일을 제작하려고 하였지만, Qt 정책상 WebEngine 모듈이 포함된 소스코드는 다음과 같이 정적링킹을 지원하지 않습니다.**
- 
+  
+![15](https://github.com/rudebono/dguchat/blob/master/img/15.png)
+
  **- 따라서 WebEngine 모듈이 포함된 Qt 프로젝트를 정적링킹하기 위해서는 커머셜 라이센스 Qt버전이 필요합니다.**
  
  **- 커머셜 라이센스의 한달 이용료는 1년 이용권으로 월간 295달러, 1달 이용권으로 월간 350달러이기에, 대학교 팀프로젝트의 지출비용으로 적합지 않아 부득이하게 소스코드만을 배포합니다.**
@@ -94,10 +122,14 @@ Microsoft Visual Studio 2015를 실행하고 ‘도구’ – ‘옵션’ - ‘
 시스템 변수 중 Path를 누르고 편집을 누릅니다.
 
 다음 예시와 같이 파이썬이 설치된 디렉토리를 추가합니다.
+ 
+![16](https://github.com/rudebono/dguchat/blob/master/img/16.png)
 
 환경 변수를 추가하고 재부팅을 하여줍니다.
 
 재부팅 후 명령 프롬프트를 켜 python을 입력하여 다음과 같이 뜬다면 작업을 성공적으로 마친 것입니다.
+ 
+![17](https://github.com/rudebono/dguchat/blob/master/img/17.png)
 
 이는 차후 빌드작업에서 declarative를 빌드할 때의 오류를 방지합니다.
 
@@ -156,6 +188,8 @@ QMAKE_CFLAGS_DEBUG = -Zi –MTd
 12. 다음과 같은 명령어를 입력합니다.
 
 configure -static -debug-and-release -prefix “C:\Qt\Static\5.7.0” -platform win32-msvc2015 -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -opengl desktop -qt-sql-sqlite -qt-sql-odbc -no-openssl -opensource -confirm-license -make libs -nomake tools -nomake examples –nomake tests
+ 
+![18](https://github.com/rudebono/dguchat/blob/master/img/18.png)
 
 다음과 같이 커머셜 라이센스는 c, 오픈 소스 라이센스는 o를 선택해줍니다.
 
@@ -181,6 +215,8 @@ nmake install
 Add를 누르고 C:\Static\5.7.0\bin\qmake.exe를 선택합니다.
 
 적절한 이름을 지정합니다. 예시) Qt 5.7.0. static
+ 
+![19](https://github.com/rudebono/dguchat/blob/master/img/19.png)
 
 
 16. ‘Tools’ - ‘Options’ - ‘Build & Run’ - ‘Kits’
@@ -188,6 +224,8 @@ Add를 누르고 C:\Static\5.7.0\bin\qmake.exe를 선택합니다.
 Add를 누르고 방금 추가한 Qt Version을 선택합니다.
 
 적절한 이름을 지정합니다. 예시) Qt 5.7.0. Static
+ 
+![20](https://github.com/rudebono/dguchat/blob/master/img/20.png)
 
 
 11. 이제 새로 생성한 Qt 5.7.0 Static Kit으로 프로젝트를 정적 링킹하여 빌드할 수 있습니다.
