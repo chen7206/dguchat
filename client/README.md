@@ -12,7 +12,9 @@
  1. www.qt.io/download 에 접속합니다.
  
  2. Desktop & Mobile Applications를 선택합니다.
-![1](https://github.com/rudebono/dguchat/tree/master/img/1.png)
+ 
+![1](dguchat/img/1.png)
+
  3. Open Source를 선택합니다.
 
  4. Download Now를 선택하여 Qt Online Installers를 다운로드합니다.
