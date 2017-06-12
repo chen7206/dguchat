@@ -1,5 +1,6 @@
 # 소스 분석
 
+## main.qml
 
     import QtQuick 2.0
 
@@ -41,3 +42,23 @@ top-levle window는 window manager와 독립된 window이다.
 
 **onFeaturePermissionRequested:** 는 QtWebEngine내의 메소드로서
 web에서 카메라 기능을 구현할 수 있도록 한다.
+
+
+## main.cpp
+
+    #include <QGuiApplication>
+    #include <QQmlApplicationEngine>
+    #include <qtwebengineglobal.h>
+
+    int main(int argc, char *argv[])
+    {
+        QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+        QGuiApplication app(argc, argv);
+     
+        QtWebEngine::initialize();
+      
+        QQmlApplicationEngine engine;
+        engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+        
+        return app.exec();
+    }
