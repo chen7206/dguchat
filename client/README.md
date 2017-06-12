@@ -1,5 +1,7 @@
- DGU Chat의 웹 소스는 WebRTC기반으로 구현되었기 때문에, WebRTC를 지원하는 웹브라우저에서만 정상적으로 작동합니다. 따라서 플렛폼과 웹브라우저의 종류에 구애받지 않고, 모든 사용자에게 동일한 사용경험을 제공하기 위해 자체적으로 WebRTC기반 미니 브라우저 프로그램 DGU Chat을 제작하였습니다. 
- 소스코드는 www.github.com/rudebono/dguchat 의 /client/source 디렉토리 내에 첨부되어있습니다. DGU Chat을 사용하기를 원하시는 분은 소스코드를 다운받으시고 다음과 같은 절차를 따르시면 됩니다.
+#**DGU Chat 컴파일 방법**
+**DGU Chat의 웹 소스는 WebRTC기반으로 구현되었기 때문에, WebRTC를 지원하는 웹브라우저에서만 정상적으로 작동합니다.
+따라서 플렛폼과 웹브라우저의 종류에 구애받지 않고, 모든 사용자에게 동일한 사용경험을 제공하기 위해 자체적으로 WebRTC기반 미니 브라우저 프로그램 DGU Chat을 제작하였습니다. 
+소스코드는 www.github.com/rudebono/dguchat 의 /client/source 디렉토리 내에 첨부되어있습니다. DGU Chat을 사용하기를 원하시는 분은 소스코드를 다운받으시고 다음과 같은 절차를 따르시면 됩니다.**
 
  1. www.qt.io/download 에 접속합니다.
  2. Desktop & Mobile Applications를 선택합니다.
