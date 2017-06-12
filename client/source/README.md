@@ -35,7 +35,6 @@ QtWebEngine 은 동적인 웹 컨텐츠들을 렌더링하는 기능을 제공�
 
 **window**는 top-level window를 생성하는 메소드이다.
 top-levle window는 window manager와 독립된 window이다.
-그래서 사이즈와 같은 것들을 임의로 설정해 줄 수 있다.
 
 코드를 보면 **width, height** 변수로 크기를 설정해주었다.
 **url**를 통해서 window에 띄울 웹페이지 주소를 설정해 주었다.
@@ -47,7 +46,15 @@ web에서 카메라 기능을 구현할 수 있도록 한다.
 ## main.cpp
 
     #include <QGuiApplication>
+
+QGuiApplication 클래스는 GUI의 전반적인 기능들을 이용하기 위하여 include함.
+
     #include <QQmlApplicationEngine>
+    
+QQmlApplicationEngine클래스는 QQmlEngine과 QQmlComponent 클래스를 결합하여 
+QML 파일을 쉽게 로드할 수 있게해준다.
+또한 C++의 기능들을 QML에서 사용할 수 있도록 해준다.
+
     #include <qtwebengineglobal.h>
 
     int main(int argc, char *argv[])
@@ -62,3 +69,14 @@ web에서 카메라 기능을 구현할 수 있도록 한다.
         
         return app.exec();
     }
+**QcoreApplication** 
+QGuiApplication 클래스를 상속 받은 클래스이다.
+비 GUI 환경에서 발생하는 event loop을 제공한다.
+
+**setAttribute** 
+전달 받은 parameter가 true이면 parameter 값으로 속성을 set한다.
+parameter가 false이면 속성을 clear 한다.
+
+**QtWebEngine**
+initialize 메소드를 통해 webEngine을 시작한다.
+
