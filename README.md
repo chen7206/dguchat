@@ -34,8 +34,9 @@
    
 ***
 ## 2. 登陆成功，现在可以开始聊天
-
-     
+    
+       
+## 3. 如果返回首页，请点击DGU CHAT图片即可 
        
           
                 
@@ -59,6 +60,9 @@ Jeonghan Seock, Shim Hee Oh, Kang Jung, Chen Hui
    
 ***
 ## 2. Landing success, start chatting
+    
+        
+## 3. If you return to the home page, click the DGU CHAT image
 
 
     
