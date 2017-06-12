@@ -137,7 +137,7 @@ Microsoft Visual Studio 2015를 실행하고 ‘도구’ – ‘옵션’ - ‘
  5. C:\Qt\Static 디렉토리를 생성합니다.
 
 
- 6. https://download.qt.io/archive/qt/5.7/5.7.0/single/에서 qt-everywhere-opensource-src-5.7.0.zip을 다운 받아 생성한 디렉토리에 압축을 풉니다.
+ 6. https://download.qt.io/archive/qt/5.7/5.7.0/single/ 에서 qt-everywhere-opensource-src-5.7.0.zip을 다운 받아 생성한 디렉토리에 압축을 풉니다.
 
 
  7. C:\Qt\Static\qt-everywhere-opensource-src-5.7.0\qtbase\mkspecs\common 디렉토리의 msvc-desktop.conf파일을 수정합니다. msvc dll파일들의 의존성을 없애는 작업입니다.
@@ -165,9 +165,9 @@ QMAKE_CFLAGS_DEBUG = -Zi –MTd
 
 \third_party\ffmpeg 디렉토리로 이동합니다.
 
-- ffmpeg_generated.gni 파일을 에디트 플러스로 열고 ‘vorbiscomment.c’를 검색하여 바로 다음줄에 “libavformat/w64.c”, 추가합니다.
+- ffmpeg_generated.gni 파일을 에디트 플러스로 열고 ‘vorbiscomment.c’를 검색하여 바로 다음줄에 “libavformat/w64.c”, 를 추가합니다.
 
-- ffmpeg_generated.gypi 파일을 에디트 플러스 열고 ‘vorbiscomment.c’를 검색하여 바로 다음줄에 ‘libavformat/w64.c’, 추가합니다.
+- ffmpeg_generated.gypi 파일을 에디트 플러스 열고 ‘vorbiscomment.c’를 검색하여 바로 다음줄에 ‘libavformat/w64.c’, 를 추가합니다.
 
 (에디트 플러스 : https://www.editplus.com/kr/download.html)
 
