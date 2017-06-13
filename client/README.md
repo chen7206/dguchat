@@ -11,10 +11,9 @@
 ### webRTC를 이용한 채팅 프로그램 입니다. 이 프로그램은 동국대학교 공개 SoftWare 강의시간에 팀 프로젝트로 제작했습니다.
 ## 주제： webRTC
 ### 팀원
-``` 
+```
 석정한, 심희오, 강정석, 천훼 
-
-```                       
+```
 # 채팅방사용방법 
 ## 1. 접속할 채팅방 이름을 입력합니다.
 ![image](https://github.com/chen7206/web1/blob/master/Capture.PNG?raw=true)  
