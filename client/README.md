@@ -12,7 +12,8 @@
 ## 주제： webRTC
 ### 팀원
 ``` 
-석정한, 심희오, 강정석, 천훼  
+석정한, 심희오, 강정석, 천훼 
+
 ```                       
 # 채팅방사용방법 
 ## 1. 접속할 채팅방 이름을 입력합니다.
@@ -46,6 +47,7 @@ Jeonghan Seock, Shim Hee Oh, Kang Jung, Chen Hui
 ```                                     
 # Chat software login method## 1. Enter the same password 
 ![image](https://github.com/chen7206/web1/blob/master/Capture.PNG?raw=true)    
+           
 ***
 ## 2. Landing success, start chatting            
 ## 3. If you return to the home page, click the DGU CHAT image
